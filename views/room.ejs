@@ -211,7 +211,7 @@
         background-color: #f6484a;
     }
  .main .main__left .whiteboard-cont {
-    flex-grow: 1;
+        flex-grow: 1;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -219,6 +219,7 @@
         position: absolute;
         z-index: 9;
         background-color: var(--main-dark);
+        visibility: hidden;
 }
 .main .main__left .whiteboard-cont #whiteboard {
   background-color: white;
@@ -390,7 +391,7 @@
                 </div>
             </div>
     
-            <div class="whiteboard-cont"><canvas id="whiteboard" height="575" width="1050"></canvas>
+            <div class="whiteboard-cont" ><canvas id="whiteboard" height="575" width="1050"></canvas>
                 <div class="colors-cont">
                     <div class="black" onclick="setColor('black')"></div>
                     <div class="red" onclick="setColor('#e74c3c')"></div>
