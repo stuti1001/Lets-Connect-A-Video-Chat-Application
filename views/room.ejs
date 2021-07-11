@@ -127,9 +127,9 @@
     }
 
     .main__right {
-        display: none;
+        display: flex;
         flex-direction: column;
-        flex: 0.3;
+        flex: 0.4;
         background-color: #242f41;
     }
 
@@ -199,7 +199,7 @@
     }
 
     .header__back {
-        display: none;
+        display: block;
         position: absolute;
         font-size: 1.3rem;
         top: 17px;
@@ -355,7 +355,8 @@
 
     @media (max-width: 700px) {
         .main__right {
-            display: none;
+            display: flex;
+            flex: 0.4;
         }
 
         .main__left {
@@ -439,7 +440,7 @@
                 </div>
             </div>
         </div>
-        <div class="main__right">
+        <div class="main__right" >
             <div class="main__chat_window">
                 <div class="messages">
 
