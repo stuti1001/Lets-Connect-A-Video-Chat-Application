@@ -173,13 +173,19 @@ navigator.mediaDevices.getUserMedia({
 }).then(stream => {
   myVideoStream = stream;
     addVideoStream(myVideo, stream); // Display our video to ourselves
-
+    const JoinCall = document.querySelector("#JoinCall");
+    let button = document.querySelector(".button");
+    button.disabled = true;
     myPeer.on('call', call => { // When we join someone's room we will receive a call from them
-        call.answer(stream) // Stream them our video/audio
+     button.disabled = false;
+      JoinCall.addEventListener("click", () => { 
+      call.answer(stream) // Stream them our video/audio
         const video = document.createElement('video') // Create a video tag for them
         call.on('stream', userVideoStream => { // When we recieve their stream
             addVideoStream(video, userVideoStream) // Display their video to ourselves
         })
+        button.disabled = true;
+      })
     })
 
     socket.on('user-connected', (userId) => { // If a new user connect
@@ -190,6 +196,14 @@ navigator.mediaDevices.getUserMedia({
 socket.on('user-disconnected', (userId) => {
   if (peers[userId]) peers[userId].close()
 })
+/*
+const EndCall = document.querySelector("#EndCall");
+EndCall.addEventListener("click", () => {
+ EndCall(userId);
+}) 
+function EndCall(userId){
+  if (peers[userId]) peers[userId].close()
+  }*/
 
 myPeer.on('open', (id) => { // When we first open the app, have us join a room
     socket.emit('join-room', ROOM_ID, id, user)

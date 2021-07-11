@@ -2,13 +2,12 @@
 const express = require('express')
 const app = express()
 const server = require('http').Server(app)
-const io = require('socket.io')(server, {
-    cors: {
-        origin: '*'
-    }
-});
+const io = require('socket.io')(server)
 const {v4: uuidV4} = require('uuid')
-
+const { ExpressPeerServer } = require('peer');
+const peerServer = ExpressPeerServer(server, {
+    debug: true
+});
 
 
 
@@ -33,7 +32,7 @@ io.on('connection', socket => {
     socket.on('join-room', (roomId, userId, userName) => {
         socket.join(roomId)  // Join the room
         socketroom[socket.id] = roomId;
-        socket.broadcast.emit('user-connected', userId) // Tell everyone else in the room that we joined
+        socket.to(roomId).broadcast.emit('user-connected', userId) // Tell everyone else in the room that we joined
         socket.on("message", (message) => {
             io.to(roomId).emit("createMessage", message, userName)
         })
