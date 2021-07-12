@@ -317,5 +317,5 @@ socket.on("createMessage", (message, userName) => {
 });
 const End = document.querySelector("#End");
 End.addEventListener('click', () => {
-  location.href = 'views\index.html';
+  location.href = 'End.html';
 })
