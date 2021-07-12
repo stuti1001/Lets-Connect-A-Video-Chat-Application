@@ -40,19 +40,6 @@ function fitToContainer(canvas) {
 
 fitToContainer(canvas);
 
-//getCanvas call is under join room call
-socket.on('getCanvas', url => {
-    let img = new Image();
-    img.onload = start;
-    img.src = url;
-
-    function start() {
-        ctx.drawImage(img, 0, 0);
-    }
-
-    console.log('got canvas', url)
-})
-
 function setColor(newcolor) {
     color = newcolor;
     drawsize = 3;
@@ -63,13 +50,11 @@ function setEraser() {
     drawsize = 10;
 }
 
-//might remove this
 function reportWindowSize() {
     fitToContainer(canvas);
 }
 
 window.onresize = reportWindowSize;
-//
 
 function clearBoard() {
     if (window.confirm('Are you sure you want to clear board? This cannot be undone')) {
@@ -85,13 +70,13 @@ socket.on('clearBoard', () => {
 })
 
 function draw(newx, newy, oldx, oldy) {
-    ctx.strokeStyle = color;
-    ctx.lineWidth = drawsize;
-    ctx.beginPath();
-    ctx.moveTo(oldx, oldy);
-    ctx.lineTo(newx, newy);
-    ctx.stroke();
-    ctx.closePath();
+  ctx.strokeStyle = color;
+  ctx.lineWidth = drawsize;
+  ctx.beginPath();
+  ctx.moveTo(oldx, oldy);
+  ctx.lineTo(newx, newy);
+  ctx.stroke();
+  ctx.closePath();
 
     socket.emit('store canvas', canvas.toDataURL());
 
@@ -301,20 +286,6 @@ inviteButton.addEventListener("click", (e) => {
    text.value = ""
  })
 
-
-
-const main__chat_window = document.querySelector('.main__chat_window')
-socket.on("createMessage", (message, userName) => {
-  messages.innerHTML =
-    messages.innerHTML +
-    `<div class="message">
-        <b><i class="far fa-user-circle"></i> <span> ${
-          userName === user ? "me" : userName
-        }</span> </b>
-        <span>${message}</span>
-    </div>`;
-    main__chat_window.scrollTop = main__chat_window.scrollHeight;
-});
 const End = document.querySelector("#End");
 End.addEventListener('click', () => {
   location.href = 'End.html';
