@@ -2,13 +2,17 @@
   "name": "final",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "nodemon server.js"
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
   },
   "keywords": [],
-  "author": "",
+  "author": "Stuti Pachori",
   "license": "ISC",
   "dependencies": {
     "ejs": "^3.1.6",

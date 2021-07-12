@@ -8,7 +8,7 @@ const { ExpressPeerServer } = require('peer');
 const peerServer = ExpressPeerServer(server, {
     debug: true
 });
-
+const port = process.env.PORT || 3000
 app.set('view engine', 'ejs') // Tell Express we are using EJS
 app.use(express.static('public')) // Tell express to pull the client script from the public folder
 
@@ -55,4 +55,6 @@ io.on('connection', socket => {
     })
 })
 
-server.listen(3000) // Run the server on the 3000 port
+server.listen(port, () => {
+    console.log(`Server running at port ` + port);
+}); // Run the server on the 3000 port
