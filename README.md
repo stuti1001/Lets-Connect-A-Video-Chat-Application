@@ -25,7 +25,7 @@ Features Supported =>
 
 Tech Stack Used =>
 
-Node.js
-Express.js
-PeerJS
+Node.js,
+Express.js,
+PeerJS,
 Socket.io
