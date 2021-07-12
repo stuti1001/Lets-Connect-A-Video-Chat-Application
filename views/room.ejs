@@ -104,6 +104,36 @@
         margin: 0 0.5rem;
     }
 
+   .button {
+        border: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--primary-color);
+        height: 50px;
+        border-radius: 5px;
+        color: var(--main-light);
+        font-size: 1rem;
+        width: 50px;
+        margin: 0 0.5rem;
+    }
+    .endbutton {
+        border: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #f6484a;
+        height: 50px;
+        border-radius: 5px;
+        color: var(--main-light);
+        font-size: 1rem;
+        width: 50px;
+        margin: 0 0.5rem;
+    }
+    .button:disabled , .endbutton:disabled {
+        cursor: not-allowed;
+    }
+
     .board-icon {
         display: flex;
         justify-content: center;
@@ -115,11 +145,6 @@
         font-size: 1.2rem;
         width: 50px;
         margin: 0 0.5rem;
-
-
-
-
-
     }
 
     .background__red {
@@ -425,23 +450,22 @@
                     <div class="board-icon tooltip">
                         <i class="fas fa-chalkboard"></i>  
                     </div>
-                    
+                    <div id="raisehand" class="options__button">
+                        <i class="fas fa-fist-raised"></i>
+                    </div>
+                </div>
+               <div class="options__right">
                     <div id="JoinCall" class="options__button" >
                         <button class="button">Join Call</button>
                     </div>
                     <div id="EndCall" class="options__button" >
                         <button class="endbutton">End Call</button>
                     </div>
-                    <div id="raisehand" class="options__button">
-                       Raise Hand
-                    </div>
-                </div>
-               <div class="options__right">
-                    <div id="End" class="options__button">
-                        <i class="fas fa-phone-slash"></i>
-                    </div>
                     <div id="inviteButton" class="options__button">
                         <i class="fas fa-user-plus"></i>
+                    </div>
+                    <div id="End" class="options__button">
+                        <i class="fas fa-phone-slash"></i>
                     </div>
                 </div>
             </div>
