@@ -33,8 +33,12 @@ io.on('connection', socket => {
         socket.join(roomId)  // Join the room
         socketroom[socket.id] = roomId;
         socket.to(roomId).broadcast.emit('user-connected', userId) // Tell everyone else in the room that we joined
+        socket.to(roomId).emit("createMessage", `${userName} joined the room.`, 'Bot' );
         socket.on("message", (message) => {
             io.to(roomId).emit("createMessage", message, userName)
+        })
+        socket.on('endvidcall', () => {
+            socket.to(roomId).emit("End_Call", userId)
         })
         socket.on('getCanvas', () => {
             if (roomBoard[socketroom[socket.id]])
@@ -55,7 +59,8 @@ io.on('connection', socket => {
 
          // Communicate the disconnection
         socket.on('disconnect', () => {
-            socket.broadcast.emit('user-disconnected', userId)
+            socket.to(roomId).emit('user-disconnected', userId)
+            socket.to(roomId).emit("createMessage", `${userName} left the room.`, 'Bot' );
         })
     
 })

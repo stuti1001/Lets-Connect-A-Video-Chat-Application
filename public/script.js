@@ -166,7 +166,7 @@ whiteboardButt.addEventListener('click', () => {
 
 
 // Access the user's video and audio
-let myVideoStream;
+let myVideoStream; 
 navigator.mediaDevices.getUserMedia({
     video: true,
     audio: true
@@ -176,6 +176,9 @@ navigator.mediaDevices.getUserMedia({
     const JoinCall = document.querySelector("#JoinCall");
     let button = document.querySelector(".button");
     button.disabled = true;
+    let EndCallButt = document.querySelector("#EndCall");
+    let endbutton = document.querySelector(".endbutton");
+    endbutton.disabled = true;
     myPeer.on('call', call => { // When we join someone's room we will receive a call from them
      button.disabled = false;
       JoinCall.addEventListener("click", () => { 
@@ -185,7 +188,13 @@ navigator.mediaDevices.getUserMedia({
             addVideoStream(video, userVideoStream) // Display their video to ourselves
         })
         button.disabled = true;
-      })
+        endbutton.disabled = false; 
+        EndCallButt.addEventListener("click", (e) => {
+        video.remove();
+        socket.emit('endvidcall');
+        endbutton.disabled = true;
+      }) 
+    })
     })
 
     socket.on('user-connected', (userId) => { // If a new user connect
@@ -196,21 +205,17 @@ navigator.mediaDevices.getUserMedia({
 socket.on('user-disconnected', (userId) => {
   if (peers[userId]) peers[userId].close()
 })
-/*
-const EndCall = document.querySelector("#EndCall");
-EndCall.addEventListener("click", () => {
- EndCall(userId);
-}) 
-function EndCall(userId){
+
+socket.on('End_Call', (userId) => {
   if (peers[userId]) peers[userId].close()
-  }*/
+})
 
 myPeer.on('open', (id) => { // When we first open the app, have us join a room
     socket.emit('join-room', ROOM_ID, id, user)
 })
 
 function connectToNewUser(userId, stream) { // This runs when someone joins our room
-    const call = myPeer.call(userId, stream) // Call the user who just joined
+  const call = myPeer.call(userId, stream) // Call the user who just joined
     // Add their video
     const video = document.createElement('video') 
     call.on('stream', (userVideoStream) => {
@@ -250,7 +255,7 @@ text.addEventListener("keydown", (e) => {
     text.value = "";
   }
 });
-
+const raisehand = document.querySelector("#raisehand");
 const inviteButton = document.querySelector("#inviteButton");
 const muteButton = document.querySelector("#muteButton");
 const stopVideo = document.querySelector("#stopVideo");
@@ -290,14 +295,15 @@ inviteButton.addEventListener("click", (e) => {
     window.location.href
   );
   });
+ raisehand.addEventListener("click", (e) => {
+   text.value = `<i class="fas fa-fist-raised"></i>`
+   socket.emit("message", text.value);
+   text.value = ""
+ })
 
-EndCall.addEventListener("click", (e) => {
 
- 
-    window.location.replace(www.google.com);
 
-});
-
+const main__chat_window = document.querySelector('.main__chat_window')
 socket.on("createMessage", (message, userName) => {
   messages.innerHTML =
     messages.innerHTML +
@@ -307,4 +313,9 @@ socket.on("createMessage", (message, userName) => {
         }</span> </b>
         <span>${message}</span>
     </div>`;
+    main__chat_window.scrollTop = main__chat_window.scrollHeight;
 });
+const End = document.querySelector("#End");
+End.addEventListener('click', () => {
+  location.href = 'views\index.html';
+})
