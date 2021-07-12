@@ -132,6 +132,7 @@
     }
     .button:disabled , .endbutton:disabled {
         cursor: not-allowed;
+        opacity: 0.4;
     }
 
     .board-icon {
@@ -407,7 +408,7 @@
     <div class="header">
         <div class="logo">
             <div class="header__back">
-                <i class="fas fa-angle-left"></i>
+               <span title="Hide Chat"> <i class="fas fa-angle-left"></i></span>
             </div>
             <h3>Video Chat</h2>
         </div>
@@ -439,19 +440,19 @@
             <div class="options">
                 <div class="options__left">
                     <div id="stopVideo" class="options__button">
-                        <i class="fa fa-video-camera"></i>
+                       <span title="Toggle Camera"> <i class="fa fa-video-camera"></i></span>
                     </div>
                     <div id="muteButton" class="options__button">
-                        <i class="fa fa-microphone"></i>
+                       <span title="Toggle Mic"> <i class="fa fa-microphone"></i></span>
                     </div>
                     <div id="showChat" class="options__button">
-                        <i class="fa fa-comment" aria-hidden="true"></i>
+                       <span title="Show Chat"> <i class="fa fa-comment" aria-hidden="true"></i></span>
                     </div>
                     <div class="board-icon tooltip">
-                        <i class="fas fa-chalkboard"></i>  
+                      <span title="JamBoard">  <i class="fas fa-chalkboard"></i> </span>
                     </div>
                     <div id="raisehand" class="options__button">
-                        <i class="fas fa-fist-raised"></i>
+                      <span title="Raise Hand">  <i class="fas fa-fist-raised"></i></span>
                     </div>
                 </div>
                <div class="options__right">
@@ -462,10 +463,10 @@
                         <button class="endbutton">End Call</button>
                     </div>
                     <div id="inviteButton" class="options__button">
-                        <i class="fas fa-user-plus"></i>
+                       <span title="Invite link"> <i class="fas fa-user-plus"></i></span>
                     </div>
                     <div id="End" class="options__button">
-                        <i class="fas fa-phone-slash"></i>
+                       <span title="End Session"> <i class="fas fa-phone-slash"></i></span>
                     </div>
                 </div>
             </div>
@@ -479,7 +480,7 @@
             <div class="main__message_container">
                 <input id="chat_message" type="text" autocomplete="off" placeholder="Type message here...">
                 <div id="send" class="options__button">
-                    <i class="fa fa-telegram" aria-hidden="true"></i>
+                   <span title="Send"> <i class="fa fa-telegram" aria-hidden="true"></i></span>
                 </div>
             </div>
         </div>
