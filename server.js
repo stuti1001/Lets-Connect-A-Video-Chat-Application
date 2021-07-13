@@ -8,6 +8,8 @@ const { ExpressPeerServer } = require('peer');
 const peerServer = ExpressPeerServer(server, {
     debug: true
 });
+
+app.use('/peerjs' , peerServer);
 const port = process.env.PORT || 3000
 app.set('view engine', 'ejs') // Tell Express we are using EJS
 app.use(express.static('public')) // Tell express to pull the client script from the public folder
