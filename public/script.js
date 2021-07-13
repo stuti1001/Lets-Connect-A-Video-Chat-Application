@@ -244,7 +244,7 @@ socket.on("createMessage", (message, userName) => {
     }</span> </b>
         <span>${message}</span>
     </div>`;
-  main__chat_window.scrollTop = main__chat_window.scrollHeight;
+  main__chat_window.scrollTop = main__chat_window.scrollHeight;// automatically scroll up when new messages are received
 });
 
 const raisehand = document.querySelector("#raisehand");
